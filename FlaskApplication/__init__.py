@@ -9,10 +9,14 @@ azure_ip = AzureIp()
 
 @app.route('/')
 def home():
-    text = { 'content': 'Welcome to your flask application !' } 
+	ip_address = request.remote_addr
+    text = { 'content': 'Welcome to your flask application from IP address %s!' % ip_address = ip_address } 
     return render_template("home.html",
         title = 'Home',
         text = text)
+    ip_address = request.remote_addr
+    #region = azure_ip.find_ip(ip_address)
+    #return 'You appear to be from IP address %s which is in region %s' % (ip_address, region)
 
 
 @app.route('/regions/<ip_address>', methods=["GET"])
